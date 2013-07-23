@@ -1,7 +1,8 @@
 //
-//  emptyVisualSystem.h
+//  CloudsVisualSystemColony.h
+//  VSColony
 //
-//  Created by Patricio Gonzalez Vivo on 7/23/13.
+//  Created by Patricio Gonzalez Vivo on 6/26/13.
 //
 //
 
@@ -9,7 +10,9 @@
 
 #include "CloudsVisualSystem.h"
 
-class emptyVisualSystem : public CloudsVisualSystem {
+#include "cCell.h"
+        
+class CloudsVisualSystemColony : public CloudsVisualSystem {
 public:
     
     string getSystemName();
@@ -17,25 +20,25 @@ public:
     void selfSetup();
     void selfSetupGuis();
     
-	void selfPresetLoaded(string presetPath);
-	
     void selfAutoMode();
     void selfUpdate();
     void selfDrawBackground();
     void selfDrawDebug();
     void selfSceneTransformation();
-    void selfDraw();
+    
+//    void draw(ofEventArgs & args);
+    
     void selfExit();
     void selfBegin();
-	void selfEnd();
+    void selfEnd();
     
     void selfKeyPressed(ofKeyEventArgs & args);
     void selfKeyReleased(ofKeyEventArgs & args);
     
-    void selfMouseDragged(ofMouseEventArgs& data);
-    void selfMouseMoved(ofMouseEventArgs& data);
-    void selfMousePressed(ofMouseEventArgs& data);
-    void selfMouseReleased(ofMouseEventArgs& data);
+    void mouseDragged(ofMouseEventArgs & args);
+    void mouseMoved(ofMouseEventArgs & args);
+    void mousePressed(ofMouseEventArgs & args);
+    void mouseReleased(ofMouseEventArgs & args);
     
     void selfSetupGui();
     void selfGuiEvent(ofxUIEventArgs &e);
@@ -46,8 +49,19 @@ public:
     void selfSetupRenderGui();
     void guiRenderEvent(ofxUIEventArgs &e);
     
-protected:
+   
     
-    //  Your Stuff
-    //
+private:
+    
+    ofFbo       foodFbo;
+    ofShader    noiseShader;
+    
+	vector<ofImage> sprites;
+	ofImage noise;
+	
+    vector< colonyCell* > cells;
+    vector< colonyCell* > newborns;
+    
+    float   noiseZoom;
+    int newbornCount;
 };
