@@ -49,6 +49,7 @@ local.properties
 *~.nib
 # Thumbnails
 ._*
+build/
 
 #Windows
 # Windows image file caches
